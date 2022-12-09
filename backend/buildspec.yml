@@ -1,0 +1,38 @@
+version: 0.2
+run-as: "root"
+phases:
+  install:
+    runtime-versions:
+      java: corretto11
+  pre_build:
+    commands:
+      - cd backend
+      - echo Logging in to Amazon ECR...
+      - aws --version
+      - docker login -u "hscnord" -p "sjU27xj1Vlo02Xz"
+      - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
+      - pip3 uninstall -y awscli
+      - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+      - unzip awscliv2.zip
+      - ./aws/install
+      - REPOSITORY_URI=882691852265.dkr.ecr.eu-central-1.amazonaws.com/logoass-production
+      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - IMAGE_TAG=backend
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      - docker login -u "hscnord" -p "sjU27xj1Vlo02Xz"
+      - docker build -t $REPOSITORY_URI:latest .
+      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker images...
+      - docker push $REPOSITORY_URI:$IMAGE_TAG
+      - echo Removing Dockerfile...
+      - rm ./Dockerfile
+artifacts:
+  files:
+    - "**/*"
+  base-directory: "backend"

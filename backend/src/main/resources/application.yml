@@ -1,0 +1,52 @@
+spring:
+  profiles:
+    active: dev
+  data:
+    rest:
+      default-page-size: 100
+  jpa:
+    properties.hibernate.dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: validate
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  mail:
+    host: localhost
+    port: 1025
+  thymeleaf:
+    prefix: classpath:/mail/
+  flyway:
+    validate-on-migrate: false
+    ignore-missing-migrations: true
+    out-of-order: true
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+mail:
+  mime:
+    encodeparameters: false
+    encodefilename: true
+document:
+  user-image.path: src/main/resources/documents/public/user-profile-image
+
+
+
+server:
+  port: 8080
+  error:
+    include-message: always
+---
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:mysql://localhost:3306/hackathon-np?useSSL=false&allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true
+    username: root
+    password: 123456789
+server.port: 8080
+logging.path: log
+#logging.config: src/main/resources/logback_config.xml
+logging.level.com.hsc.server.config.LoggingFilter: INFO
+logging.level.root: INFO
+document:
+  files.path: logoass-documents-testing
