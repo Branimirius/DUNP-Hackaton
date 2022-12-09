@@ -33,7 +33,7 @@ document:
 
 
 server:
-  port: 8080
+  port: 8081
   error:
     include-message: always
 ---
@@ -43,7 +43,7 @@ spring:
     url: jdbc:mysql://localhost:3306/hackathon-np?useSSL=false&allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true
     username: root
     password: 123456789
-server.port: 8080
+server.port: 8081
 logging.path: log
 #logging.config: src/main/resources/logback_config.xml
 logging.level.com.hsc.server.config.LoggingFilter: INFO
