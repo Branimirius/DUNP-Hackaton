@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import './App.css';
+import NavigationBar from './components/NavigationBar/NavigationBar';
+import CityMapPage from './pages/CityMapPage/CityMapPage';
+import { HomePage } from './pages/HomePage/HomePage';
+import { LoginPage } from './pages/LoginPage/LoginPage';
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <NavigationBar />
+
+      <Switch>
+
+        <Route path="/" exact>
+          <Redirect to="/welcome" />
+        </Route>
+
+        <Route path="/welcome">
+          <HomePage />
+        </Route>
+
+        <Route path="/map">
+          <CityMapPage />
+        </Route>
+
+        <Route path="/login">
+          <LoginPage />
+        </Route>
+
+        <Route path="*">
+          <Redirect to="/" />
+
+        </Route>
+      </Switch>
+    </>
   );
 }
-
-export default App;

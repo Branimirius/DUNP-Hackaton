@@ -1,0 +1,82 @@
+.navBar {
+  display: flex;
+  height: 80px;
+  box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.05);
+  background: #ffffff;
+
+  position: sticky;
+  top: 0px;
+}
+
+.navBar > * {
+  margin-right: 1%;
+  margin-left: 0.5%;
+}
+
+.navBar > div,
+a {
+  margin-top: 30px;
+  width: 140px;
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+}
+
+.navBar > img {
+  height: 50px;
+  width: 50px;
+  margin-top: 20px;
+
+  border-radius: 100px;
+
+  cursor: pointer;
+}
+
+.navBar > section {
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.loginButton {
+  color: #df9186;
+}
+
+.registerButton {
+  margin-top: 0px;
+  color: white;
+  height: 40px;
+  width: 140px;
+  background: linear-gradient(270deg, #ecbcb3 0%, #eaa79e 100%);
+  box-shadow: 0px 15px 20px rgba(234, 168, 159, 0.2);
+  border-radius: 50px;
+  text-align: center;
+}
+
+.newAccount {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 10px;
+  color: #ffffff;
+}
+
+.appName {
+  color: #df9186;
+  font-weight: 700;
+  font-size: x-large;
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+  margin-left: 15px;
+}
+
+.active {
+  padding-bottom: 0.25rem;
+  border-bottom: 2px solid #df9186;
+}
+
+.appName:first-of-type {
+  margin-right: auto;
+}
