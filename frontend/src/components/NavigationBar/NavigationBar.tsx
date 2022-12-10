@@ -8,6 +8,9 @@ const NavigationBar = () => {
         <NavLink to="/welcome" className={classes.appName}>
           Novi Pazar
         </NavLink>
+        <NavLink to="/newLocation" activeClassName={classes.active}>
+          Add Location
+        </NavLink>
         <NavLink to="/map" activeClassName={classes.active}>
           City Map
         </NavLink>

@@ -29,18 +29,12 @@ const CityMapPage = () => {
                 initialViewState={{
                     longitude: lng,
                     latitude: lat,
+                    zoom: 13
                 }}
                 mapStyle="mapbox://styles/mapbox/streets-v9"
             >
                 <Marker longitude={lng} latitude={lat} />
-                <Marker longitude={lng + 2} latitude={lat} />
-                <Marker longitude={lng + 10} latitude={lat} />
-                <Marker longitude={lng + 19} latitude={lat} />
-                <Marker longitude={lng + 11} latitude={lat} />
-                <Marker longitude={lng + 12} latitude={lat} />
-                <Marker longitude={lng + 21} latitude={lat} />
-                <Marker longitude={lng + 31} latitude={lat} />
-                <Marker longitude={lng + 44} latitude={lat} />
+
                 <NavigationControl position="bottom-right" />
                 <FullscreenControl />
 

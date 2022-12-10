@@ -4,6 +4,7 @@ import NavigationBar from './components/NavigationBar/NavigationBar';
 import CityMapPage from './pages/CityMapPage/CityMapPage';
 import { HomePage } from './pages/HomePage/HomePage';
 import { LoginPage } from './pages/LoginPage/LoginPage';
+import { NewLocationPage } from './pages/NewLocationPage/NewLocationPage';
 
 export default function App() {
   return (
@@ -18,6 +19,10 @@ export default function App() {
 
         <Route path="/welcome">
           <HomePage />
+        </Route>
+
+        <Route path="/newLocation">
+          <NewLocationPage />
         </Route>
 
         <Route path="/map">
