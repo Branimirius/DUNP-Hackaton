@@ -40,7 +40,7 @@ public class GeoEntityController {
     }
 
     @PostMapping("/filter")
-    public ResponseEntity<List<GeoEntityDTO>> getAllGeoEntitiesList(@RequestBody List<GeoEntityCategory> categories) {
+    public ResponseEntity<List<GeoEntityDTO>> getAllGeoEntitiesList(@RequestBody List<String> categories) {
         return new ResponseEntity<>(geoEntityService.getAllGeoEntitiesWithFilters(categories), HttpStatus.OK);
     }
 

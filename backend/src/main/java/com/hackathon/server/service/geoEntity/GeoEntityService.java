@@ -26,6 +26,6 @@ public interface GeoEntityService {
 
     GeoEntityDTO getOneById(Long id);
 
-    List<GeoEntityDTO> getAllGeoEntitiesWithFilters(List<GeoEntityCategory> categories);
+    List<GeoEntityDTO> getAllGeoEntitiesWithFilters(List<String> categories);
 
 }
