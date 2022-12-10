@@ -70,6 +70,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/local/geo-image/**").permitAll()
                     .antMatchers("/geo-entity/**").permitAll()
                     .antMatchers("/local/logo/**").permitAll()
+                    .antMatchers("/geo-entity-comment/**").permitAll()
                 .anyRequest()
                 .authenticated()
                     .and().exceptionHandling()

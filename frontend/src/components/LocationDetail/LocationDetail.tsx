@@ -1,6 +1,6 @@
 import { ChangeEvent, useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { createLocation, uploadImage } from "../../services/apis";
+import { checkImageCategory, createLocation, uploadImage } from "../../services/apis";
 
 export const LocationDetail: React.FC<{ long: number, lat: number }> = ({ long, lat }) => {
 
@@ -19,11 +19,14 @@ export const LocationDetail: React.FC<{ long: number, lat: number }> = ({ long, 
         history.push('/map');
     }
 
-    const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const handleFileChange = async (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
             setFile(e.target.files[0]);
 
             //get category
+            const categoryResponse = await checkImageCategory(file);
+
+            console.log(categoryResponse.data);
         }
     };
 
