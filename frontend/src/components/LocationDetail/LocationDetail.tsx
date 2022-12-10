@@ -39,18 +39,31 @@ export const LocationDetail: React.FC<{ long: number, lat: number }> = ({ long, 
                 <p>Longitude: {long}</p>
                 <p>Latitude: {lat}</p>
             </div>
-            <div>
+            <div style={{backgroundColor: "#f2f2f2", padding: "8px 10px", borderRadius: "10px"}} >
                 <p>Upload image: </p>
                 <input type="file" onChange={handleFileChange} />
             </div>
             <div>
-                <p>Cattegory: FETCH FROM BACKEND</p>
+                <p>Category: FETCH FROM BACKEND</p>
             </div>
             <div>
-                <input type="text" ref={descriptionRef} />
+                <input style={{width: "100%", height: "50px"}} type="text" ref={descriptionRef} />
             </div>
             <div>
-                <button type="submit">SAVE</button>
+                <button style={{
+                    background: "#eaa79e",
+                    border: "none",
+                    color: "white",
+                    padding: "15px 32px",
+                    textAlign: "center",
+                    textDecoration: "none",
+                    display: "inline-block",
+                    fontSize: "16px",
+                    margin: "4px 2px",
+                    cursor: "pointer",
+                    borderRadius: "100px",
+                    marginTop: "15px"
+                }} type="submit">SAVE</button>
             </div>
         </form>
     )

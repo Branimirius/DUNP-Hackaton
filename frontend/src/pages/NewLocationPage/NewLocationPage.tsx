@@ -41,7 +41,6 @@ export const NewLocationPage = () => {
                     width: "70%",
                     height: "600px",
                     borderRadius: "15px",
-                    border: "2px solid red",
                 }}
                 initialViewState={{
                     longitude: initialLng,
