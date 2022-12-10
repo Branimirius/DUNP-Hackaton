@@ -23,6 +23,9 @@ public class LocalFileManager {
     @Value("${document.user-image.path}")
     public String USER_PROFILE_IMAGE_FILES_PATH;
 
+    @Value("${document.geo-image.path}")
+    public String GEO_IMAGE_FILES_PATH;
+
 
     public String saveFileToSystem(byte[] data, String filePath)  {
         String systemIdentifier = UUID.randomUUID().toString();
