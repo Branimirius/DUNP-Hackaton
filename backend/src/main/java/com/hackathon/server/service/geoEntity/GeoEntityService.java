@@ -3,6 +3,7 @@ package com.hackathon.server.service.geoEntity;
 import com.hackathon.server.model.dto.geoEntity.GeoEntityDTO;
 import com.hackathon.server.model.dto.user.UserDTO;
 import com.hackathon.server.model.geoEntity.GeoEntity;
+import com.hackathon.server.model.geoEntity.enums.GeoEntityCategory;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -24,5 +25,7 @@ public interface GeoEntityService {
     GeoEntityDTO uploadImage(Long id, MultipartFile profileImage);
 
     GeoEntityDTO getOneById(Long id);
+
+    List<GeoEntityDTO> getAllGeoEntitiesWithFilters(List<GeoEntityCategory> categories);
 
 }
