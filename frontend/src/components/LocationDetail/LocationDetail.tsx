@@ -54,7 +54,7 @@ export const LocationDetail: React.FC<{ long: number, lat: number }> = ({ long, 
             </div>
             <div>
                 <button style={{
-                    background: "#eaa79e",
+                    background: "#0f5ba2",
                     border: "none",
                     color: "white",
                     padding: "15px 32px",

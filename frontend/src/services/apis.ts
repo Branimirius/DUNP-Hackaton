@@ -1,4 +1,5 @@
 import { urls } from "../utils/urls";
+import { axiosInstance } from "../config/axios-instance";
 import axios from "axios";
 
 export const loginUser = (loginCredentials: {
@@ -26,7 +27,7 @@ export const createLocation = (newLocation: {
   longitude: number;
   description: string;
 }) => {
-  return axios.post(urls.createLocation, newLocation);
+  return axiosInstance.post(urls.createLocation, newLocation);
 };
 
 const config = {
@@ -36,7 +37,7 @@ const config = {
 };
 
 export const uploadImage = (locationId: number, imageData: any) => {
-  return axios.post(
+  return axiosInstance.post(
     `${urls.createLocation}/${locationId}/image`,
     { image: imageData },
     config
@@ -52,7 +53,7 @@ export const getAllLocations = async () => {
 };
 
 export const createComment = (comment: any) => {
-  return axios.post(urls.addComment, comment);
+  return axiosInstance.post(urls.addComment, comment);
 };
 
 export const getLocationComments = async (locationId: number) => {
@@ -60,7 +61,9 @@ export const getLocationComments = async (locationId: number) => {
 };
 
 export const getLocationImage = async (locationId: number) => {
-  return axios.get(`${urls.getLocationImage}/${locationId}`, {responseType: 'blob'});
+  return axios.get(`${urls.getLocationImage}/${locationId}`, {
+    responseType: "blob",
+  });
 };
 
 export const filterLocations = (filters: any) => {
@@ -68,5 +71,5 @@ export const filterLocations = (filters: any) => {
 };
 
 export const deleteLocation = (locationId: any) => {
-  return axios.delete(`${urls.deleteLocation}/${locationId}`);
+  return axiosInstance.delete(`${urls.deleteLocation}/${locationId}`);
 };
