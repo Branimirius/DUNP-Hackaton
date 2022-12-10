@@ -10,7 +10,10 @@ export const LocationDetail: React.FC<{ long: number, lat: number }> = ({ long, 
 
     const createLocationHandler = async (event: React.FormEvent) => {
         event.preventDefault();
-        const locationResponse = await createLocation({ userId: 1, category: 'FOOD', latitude: lat, longitude: long, description: descriptionRef.current!.value })
+
+        let id = localStorage.getItem('id') || '';
+
+        const locationResponse = await createLocation({ userId: id, category: 'FOOD', latitude: lat, longitude: long, description: descriptionRef.current!.value })
 
         const imageResponse = await uploadImage(locationResponse.data.id, file);
 

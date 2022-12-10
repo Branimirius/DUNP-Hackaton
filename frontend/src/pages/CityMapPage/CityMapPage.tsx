@@ -6,7 +6,7 @@ import Map, {
     GeolocateControl,
 } from "react-map-gl";
 import { useEffect, useState } from "react";
-import { filterLocations, getAllLocations } from "../../services/apis";
+import { deleteLocation, filterLocations, getAllLocations } from "../../services/apis";
 import { Content } from "./styles";
 import { SelectedLocation } from "../../components/SelectedLocation/SelectedLocation";
 import { SearchBarContainer } from "../HomePage/styles";
@@ -41,6 +41,10 @@ const CityMapPage = () => {
 
             const res = await filterLocations([...languages, value]);
 
+
+            setLocations(res.data);
+
+
             console.log(res.data);
         }
 
@@ -51,21 +55,34 @@ const CityMapPage = () => {
                 response: languages.filter((e: any) => e !== value),
             });
 
-            const res = await filterLocations((e: any) => e !== value);
+            const array = languages.filter((e: any) => e !== value);
 
-            console.log(res.data);
+            const res = await filterLocations(array);
+
+            setLocations(res.data);
+
+
         }
     };
 
-    useEffect(() => {
-        const fetchLocations = async () => {
-            const response = await getAllLocations();
-            console.log(response.data);
-            setLocations(response.data)
-        };
+    const fetchLocations = async () => {
+        const response = await getAllLocations();
+        console.log(response.data);
+        setLocations(response.data)
+    };
 
+    useEffect(() => {
         fetchLocations();
     }, [])
+
+    const deleteLocationHandler = async () => {
+        const response = await deleteLocation(location.id);
+
+        console.log(response.data)
+
+        fetchLocations();
+        setLocation(null);
+    }
 
     return (
         <>
@@ -105,6 +122,7 @@ const CityMapPage = () => {
                     value="FOOD"
                     id="c"
                     onChange={handleChange}
+
                 />
                 <label
                     className="form-check-label"
@@ -130,7 +148,7 @@ const CityMapPage = () => {
                     className="form-check-input"
                     type="checkbox"
                     name="BUILDING"
-                    value="C#"
+                    value="BUILDING"
                     id="g"
                     onChange={handleChange}
                 />
@@ -193,14 +211,6 @@ const CityMapPage = () => {
                             setLocation(location);
                         }} />)}
 
-                    <Marker
-                        color="red"
-                        longitude={lng}
-                        latitude={lat}
-                        anchor="bottom"
-                        draggable>
-                    </Marker>
-
 
                     <NavigationControl position="bottom-right" />
                     <FullscreenControl />
@@ -208,7 +218,7 @@ const CityMapPage = () => {
                     <GeolocateControl />
                 </Map>
 
-                {location && <SelectedLocation location={location} />}
+                {location && <SelectedLocation location={location} onDeleteHandler={deleteLocationHandler} />}
             </Content>
         </>
     );

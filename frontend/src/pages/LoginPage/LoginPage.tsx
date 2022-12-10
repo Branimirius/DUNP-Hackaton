@@ -39,7 +39,7 @@ export const LoginPage = () => {
                         </div>
                         <div className={classes.input__box}>
                             <span className={classes.details}>Password</span>
-                            <input type={classes.password} placeholder="********" required ref={passwordRef} />
+                            <input type="password" placeholder="********" required ref={passwordRef} />
                         </div>
                     </div>
                     <div className={classes.button}>

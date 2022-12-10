@@ -4,9 +4,13 @@ import AuthContext from "../../store/auth-context";
 import { Container, HorizontalLine } from "./styles";
 import { Image } from "./styles";
 
-export const SelectedLocation: React.FC<{ location: any }> = ({ location }) => {
+import classes from './SelectedLocation.module.css';
+
+export const SelectedLocation: React.FC<{ location: any, onDeleteHandler: (locationId: number) => {} }> = ({ location, onDeleteHandler }) => {
 
     const { isLoggedIn } = useContext(AuthContext);
+
+    let userId = localStorage.getItem('id') || '';
 
     const [comments, setComments] = useState<any>([]);
     const [imageUrl, setImageUrl] = useState<any>(null);
@@ -32,7 +36,7 @@ export const SelectedLocation: React.FC<{ location: any }> = ({ location }) => {
         event.preventDefault();
         const response = await createComment({
             geoEntityId: location.id,
-            userId: 1,
+            userId: localStorage.getItem('id'),
             commentText: commentText.current?.value
         })
 
@@ -41,9 +45,18 @@ export const SelectedLocation: React.FC<{ location: any }> = ({ location }) => {
         fetchComments();
     }
 
+    const deleteLocationHandler = async () => {
+        onDeleteHandler(location.id);
+    }
+
+    //onClick={deleteLocationHandler}
+
     return <Container>
         {imageUrl && <Image src={require('../../images/noviPazar.jpg')} />}
-        {isLoggedIn && <p>{location.description} 👍</p>}
+        {isLoggedIn && <p>{location.description}👍</p>}
+        {isLoggedIn && userId === location.userId.toString() && <section className={classes.registerButton} onClick={deleteLocationHandler}>
+            <p className={classes.newAccount}>Delete entity</p>
+        </section>}
         <HorizontalLine />
         {comments.map((comment: any) => <div key={comment.id}>
             <p>{comment.commentText}</p>

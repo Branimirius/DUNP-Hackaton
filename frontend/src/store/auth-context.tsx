@@ -4,8 +4,8 @@ import { IAuthContext } from '../types/AuthContext';
 const authContextDefaults: IAuthContext = {
   token: '',
   isLoggedIn: true,
-  login: (token: string) => {},
-  logout: () => {},
+  login: (token: string) => { },
+  logout: () => { },
 };
 
 const AuthContext = React.createContext<IAuthContext>(authContextDefaults);
@@ -28,11 +28,13 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
     localStorage.removeItem('token');
   };
 
-  const loginHandler = (token: string) => {
+  const loginHandler = (user: any) => {
     setUserIsLoggedIn(true);
-    setToken(token);
+    setToken(user!.token);
 
-    localStorage.setItem('token', token);
+    localStorage.setItem('token', user.token);
+    localStorage.setItem('username', user.user.username);
+    localStorage.setItem('id', user.user.id);
   };
 
   const contextValue: IAuthContext = {
