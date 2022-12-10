@@ -1,9 +1,9 @@
 package com.hackathon.server.controller.geoEntityComment;
 
-import com.hackathon.server.model.dto.geoEntity.GeoEntityDTO;
 import com.hackathon.server.model.dto.geoEntityComment.GeoEntityCommentDTO;
-import com.hackathon.server.model.geoEntityComment.GeoEntityComment;
+import com.hackathon.server.model.dto.geoEntityCommentLike.GeoEntityCommentLikeDTO;
 import com.hackathon.server.service.geoEntityComment.GeoEntityCommentService;
+import com.hackathon.server.service.geoEntityCommentLike.GeoEntityCommentLikeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,11 +20,16 @@ import org.springframework.web.bind.annotation.*;
 public class GeoEntityCommentController {
 
     private final GeoEntityCommentService geoEntityCommentService;
+    private final GeoEntityCommentLikeService geoEntityCommentLikeService;
 
     @PostMapping
     public ResponseEntity<GeoEntityCommentDTO> createGeoEntityComment(@RequestBody GeoEntityCommentDTO commentDTO) {
         return new ResponseEntity<>(geoEntityCommentService.createComment(commentDTO), HttpStatus.OK);
     }
 
+    @DeleteMapping(value = "/{geoEntityCommentId}/like-user-id/{userId}")
+    public ResponseEntity<GeoEntityCommentLikeDTO> unlike(@PathVariable Long geoEntityCommentId, @PathVariable Long userId) {
+        return new ResponseEntity<>(geoEntityCommentLikeService.delete(geoEntityCommentId, userId), HttpStatus.OK);
+    }
 
 }

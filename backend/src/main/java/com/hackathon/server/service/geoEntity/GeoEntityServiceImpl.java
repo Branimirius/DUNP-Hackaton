@@ -5,7 +5,9 @@ import com.hackathon.server.config.error.ErrorMessageConstants;
 import com.hackathon.server.model.EntityStatus;
 import com.hackathon.server.model.dto.geoEntity.GeoEntityDTO;
 import com.hackathon.server.model.geoEntity.GeoEntity;
+import com.hackathon.server.model.user.User;
 import com.hackathon.server.repository.geoEntity.GeoEntityRepository;
+import com.hackathon.server.repository.user.UserRepository;
 import com.hackathon.server.service.util.UtilService;
 import com.hackathon.server.util.LocalFileManager;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +28,7 @@ public class GeoEntityServiceImpl implements GeoEntityService {
     private final GeoEntityRepository geoEntityRepository;
     private final UtilService utilService;
     private final LocalFileManager localFileManager;
+    private final UserRepository userRepository;
 
     @Override
     @Transactional
@@ -61,6 +64,11 @@ public class GeoEntityServiceImpl implements GeoEntityService {
         dto.setImageUrl(geoEntity.getImageUrl());
         dto.setLikeNumbers(geoEntity.getLikeNumbers());
         dto.setDescription(geoEntity.getDescription());
+
+        if(geoEntity.getUser() != null) {
+            dto.setUserId(geoEntity.getUser().getId());
+        }
+
         return dto;
     }
 
@@ -74,6 +82,13 @@ public class GeoEntityServiceImpl implements GeoEntityService {
         geoEntity.setImageUrl(dto.getImageUrl());
         geoEntity.setLikeNumbers(dto.getLikeNumbers());
         geoEntity.setDescription(dto.getDescription());
+
+        if(dto.getUserId() != null) {
+            User user = userRepository.findByIdAndEntityStatus(dto.getUserId(), EntityStatus.REGULAR)
+                    .orElseThrow(() -> new BadRequestException(ErrorMessageConstants.USER_NOT_FOUND));
+            geoEntity.setUser(user);
+        }
+
         return geoEntity;
     }
 

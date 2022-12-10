@@ -17,4 +17,6 @@ public class ErrorMessageConstants {
     public static final String GEO_ENTITY_NOT_FOUND = "GEO_ENTITY_NOT_FOUND";
     public static final String GEO_ENTITY_LIKE_ALREADY_EXIST = "GEO_ENTITY_LIKE_ALREADY_EXIST";
     public static final String GEO_ENTITY_LIKE_NOT_FOUND = "GEO_ENTITY_LIKE_NOT_FOUND";
+    public static final String GEO_ENTITY_COMMENT_LIKE_ALREADY_EXIST = "GEO_ENTITY_COMMENT_LIKE_ALREADY_EXIST";
+    public static final String GEO_ENTITY_COMMENT_LIKE_NOT_FOUND = "GEO_ENTITY_COMMENT_LIKE_NOT_FOUND";
 }
