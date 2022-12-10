@@ -29,8 +29,8 @@ CREATE TABLE `geo_entity_like` (
   `geo_entity_id` bigint(20) NOT NULL,
   `user_id` bigint(20) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_geo_entity_id` (`user_id`),
+  KEY `fk_geo_entity_id` (`geo_entity_id`),
   KEY `fk3_user_id` (`user_id`),
-  CONSTRAINT `fk_geo_entity_id` FOREIGN KEY (`geo_entity_id`) REFERENCES `geo_entity_id` (`id`),
+  CONSTRAINT `fk_geo_entity_id` FOREIGN KEY (`geo_entity_id`) REFERENCES `geo_entity` (`id`),
   CONSTRAINT `fk3_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 );
