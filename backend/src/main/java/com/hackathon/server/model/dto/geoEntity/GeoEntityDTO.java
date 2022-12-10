@@ -27,4 +27,6 @@ public class GeoEntityDTO {
 
     private String description;
 
+    private Long userId;
+
 }

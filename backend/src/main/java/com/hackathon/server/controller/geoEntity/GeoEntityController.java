@@ -1,6 +1,7 @@
 package com.hackathon.server.controller.geoEntity;
 
 import com.hackathon.server.model.dto.geoEntity.GeoEntityDTO;
+import com.hackathon.server.model.dto.geoEntityComment.GeoEntityCommentDTO;
 import com.hackathon.server.model.dto.geoEntityLike.GeoEntityLikeDTO;
 import com.hackathon.server.service.geoEntity.GeoEntityService;
 import com.hackathon.server.service.geoEntityComment.GeoEntityCommentService;
@@ -54,8 +55,8 @@ public class GeoEntityController {
     }
 
     @GetMapping("/{id}/comments")
-    public ResponseEntity<List<GeoEntityDTO>> getAllComments(@PathVariable Long id) {
-        return new ResponseEntity<>(geoEntityService.getAllGeoEntities(), HttpStatus.OK);
+    public ResponseEntity<List<GeoEntityCommentDTO>> getAllComments(@PathVariable Long id) {
+        return new ResponseEntity<>(geoEntityCommentService.getAllCommentsByGeoEntityId(id), HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/{geoEntityId}/like-user-id/{userId}")

@@ -7,7 +7,7 @@ public interface GeoEntityLikeService {
 
     GeoEntityLikeDTO create(GeoEntityLikeDTO geoEntityLikeDTO);
 
-    GeoEntityLikeDTO delete(Long bookReviewCommentId, Long userId);
+    GeoEntityLikeDTO delete(Long geoEntityId, Long userId);
 
     GeoEntityLikeDTO convertToDTO(GeoEntityLike geoEntityLike);
 
