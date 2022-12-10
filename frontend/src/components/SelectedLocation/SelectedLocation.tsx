@@ -10,12 +10,14 @@ export const SelectedLocation: React.FC<{ location: any, onDeleteHandler: (locat
 
     const { isLoggedIn } = useContext(AuthContext);
 
+    const [imageSrc, setImageSrc] = useState<any>();
+
     let userId = localStorage.getItem('id') || '';
 
     const [comments, setComments] = useState<any>([]);
-    const [imageUrl, setImageUrl] = useState<any>(null);
 
     let commentText = useRef<HTMLInputElement>(null);
+
 
     const fetchComments = async () => {
         const response = await getLocationComments(location.id);
@@ -24,7 +26,9 @@ export const SelectedLocation: React.FC<{ location: any, onDeleteHandler: (locat
 
     const fetchImage = async () => {
         const response = await getLocationImage(location.imageUrl);
-        setImageUrl(response.data);
+
+        setImageSrc(URL.createObjectURL(response.data));
+
     };
 
     useEffect(() => {
@@ -52,7 +56,7 @@ export const SelectedLocation: React.FC<{ location: any, onDeleteHandler: (locat
     //onClick={deleteLocationHandler}
 
     return <Container>
-        {imageUrl && <Image src={require('../../images/noviPazar.jpg')} />}
+        <img src={imageSrc} alt="img" />
         {isLoggedIn && <p>{location.description}👍</p>}
         {isLoggedIn && userId === location.userId.toString() && <section className={classes.registerButton} onClick={deleteLocationHandler}>
             <p className={classes.newAccount}>Delete entity</p>
