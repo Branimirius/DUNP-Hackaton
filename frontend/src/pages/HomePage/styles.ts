@@ -1,25 +1,31 @@
 import styled from "styled-components";
 
-export const Image = styled.img`
-  z-index: -1;
-  position: absolute;
-
-  width: 100%;
-
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-
-  opacity: 0.6;
-`;
-
 export const Content = styled.div`
   text-align: center;
+
+  display: flex;
+
+  flex-direction: column;
+
+  background-color: #3366ff;
+
+  border-radius: 5px;
+
+  margin-top: 140px;
+  margin-left: 5%;
+  margin-right: 5%;
 `;
 
 export const WelcomeMessage = styled.p`
-  margin-top: 200px;
-  color: #273be2;
+  color: #fff;
   font-size: 100px;
+  padding: 0;
+  margin: 0;
+`;
+
+export const ExploreMessage = styled.p`
+  color: #fff;
+  font-size: 25px;
 `;
 
 export const SearchBarContainer = styled.div`
