@@ -41,6 +41,10 @@ const CityMapPage = () => {
 
             const res = await filterLocations([...languages, value]);
 
+
+            setLocations(res.data);
+
+
             console.log(res.data);
         }
 
@@ -51,9 +55,13 @@ const CityMapPage = () => {
                 response: languages.filter((e: any) => e !== value),
             });
 
-            const res = await filterLocations((e: any) => e !== value);
+            const array = languages.filter((e: any) => e !== value);
 
-            console.log(res.data);
+            const res = await filterLocations(array);
+
+            setLocations(res.data);
+
+
         }
     };
 
@@ -114,6 +122,7 @@ const CityMapPage = () => {
                     value="FOOD"
                     id="c"
                     onChange={handleChange}
+
                 />
                 <label
                     className="form-check-label"
@@ -139,7 +148,7 @@ const CityMapPage = () => {
                     className="form-check-input"
                     type="checkbox"
                     name="BUILDING"
-                    value="C#"
+                    value="BUILDING"
                     id="g"
                     onChange={handleChange}
                 />
@@ -201,14 +210,6 @@ const CityMapPage = () => {
                             e.originalEvent.stopPropagation();
                             setLocation(location);
                         }} />)}
-
-                    <Marker
-                        color="red"
-                        longitude={lng}
-                        latitude={lat}
-                        anchor="bottom"
-                        draggable>
-                    </Marker>
 
 
                     <NavigationControl position="bottom-right" />
