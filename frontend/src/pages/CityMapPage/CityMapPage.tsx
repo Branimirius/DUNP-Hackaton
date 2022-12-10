@@ -196,7 +196,6 @@ const CityMapPage = () => {
                         height: "600px",
                         minWidth: "70%",
                         borderRadius: "15px",
-                        border: "2px solid red",
                     }}
                     initialViewState={{
                         longitude: lng,

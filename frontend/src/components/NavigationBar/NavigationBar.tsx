@@ -9,7 +9,7 @@ const NavigationBar = () => {
   return (
     <nav className={classes.navBar}>
       <NavLink to="/welcome" className={classes.appName}>
-        Novi Pazar
+        Explore
       </NavLink>
       {isLoggedIn && <NavLink to="/newLocation" activeClassName={classes.active}>
         Add Location
