@@ -3,6 +3,13 @@ import styled from "styled-components";
 export const Image = styled.img`
   z-index: -1;
   position: absolute;
+
+  width: 100%;
+
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  opacity: 0.6;
 `;
 
 export const Content = styled.div`
@@ -10,8 +17,8 @@ export const Content = styled.div`
 `;
 
 export const WelcomeMessage = styled.p`
-  margin-top: 130px;
-  color: #4f2f2f;
+  margin-top: 200px;
+  color: #273be2;
   font-size: 100px;
 `;
 
