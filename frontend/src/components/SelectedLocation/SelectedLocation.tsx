@@ -1,30 +1,21 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { createComment, getLocationComments, getLocationImage } from "../../services/apis";
+import AuthContext from "../../store/auth-context";
 import { Container, HorizontalLine } from "./styles";
 import { Image } from "./styles";
 
-const COMMENTS = [{
-    username: 'mirko123',
-    commentText: 'Jako lepa destinacija.'
-}, {
-    username: 'nale',
-    commentText: 'Jako lepa destinacija.'
-}, {
-    username: 'steva',
-    commentText: 'Veoma lepo.'
-}, {
-    username: 'nikola',
-    commentText: 'Ne svidja mi se.'
-},]
-
 export const SelectedLocation: React.FC<{ location: any }> = ({ location }) => {
 
-    const [comments, setComments] = useState<any>(COMMENTS);
+    const { isLoggedIn } = useContext(AuthContext);
+
+    const [comments, setComments] = useState<any>([]);
     const [imageUrl, setImageUrl] = useState<any>(null);
+
+    let commentText = useRef<HTMLInputElement>(null);
 
     const fetchComments = async () => {
         const response = await getLocationComments(location.id);
-        setComments(response);
+        setComments(response.data);
     };
 
     const fetchImage = async () => {
@@ -34,7 +25,7 @@ export const SelectedLocation: React.FC<{ location: any }> = ({ location }) => {
 
     useEffect(() => {
         fetchImage();
-        //fetchComments();
+        fetchComments();
     }, [location])
 
     const addCommentHandler = async (event: React.FormEvent) => {
@@ -42,24 +33,27 @@ export const SelectedLocation: React.FC<{ location: any }> = ({ location }) => {
         const response = await createComment({
             geoEntityId: location.id,
             userId: 1,
-            commentText: location.description
+            commentText: commentText.current?.value
         })
 
-        //fetchComments();
+        commentText.current!.value = '';
+
+        fetchComments();
     }
 
     return <Container>
         {imageUrl && <Image src={require('../../images/noviPazar.jpg')} />}
-        <p>{location.description} 👍</p>
+        {isLoggedIn && <p>{location.description} 👍</p>}
         <HorizontalLine />
         {comments.map((comment: any) => <div key={comment.id}>
-            <p>{comment.commentText} 👍</p>
+            <p>{comment.commentText}</p>
+            {isLoggedIn && <>👍</>}
             <p>by {comment.username}</p>
         </div>)}
-        <form onSubmit={addCommentHandler}>
-            <input type="text" />
+        {isLoggedIn && <form onSubmit={addCommentHandler}>
+            <input type="text" ref={commentText} />
             <button type="submit">Add</button>
-        </form>
+        </form>}
 
     </Container>
 };

@@ -7,6 +7,6 @@ export const urls = {
   uploadImage: `${path}/geo-entity`,
   getLocations: `${path}/geo-entity`,
   addComment: `${path}/geo-entity-comment`,
-  getLocationComments: `${path}`,
+  getLocationComments: `${path}/geo-entity`,
   getLocationImage: `${path}/local/geo-image`,
 };

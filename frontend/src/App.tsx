@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import './App.css';
 import NavigationBar from './components/NavigationBar/NavigationBar';
@@ -6,8 +7,12 @@ import { HomePage } from './pages/HomePage/HomePage';
 import { LoginPage } from './pages/LoginPage/LoginPage';
 import { NewLocationPage } from './pages/NewLocationPage/NewLocationPage';
 import { RegistrationPage } from './pages/RegistrationPage/RegistrationPage';
+import AuthContext from './store/auth-context';
 
 export default function App() {
+
+  const { isLoggedIn } = useContext(AuthContext);
+
   return (
     <>
       <NavigationBar />
@@ -22,9 +27,9 @@ export default function App() {
           <HomePage />
         </Route>
 
-        <Route path="/newLocation">
+        {isLoggedIn && <Route path="/newLocation">
           <NewLocationPage />
-        </Route>
+        </Route>}
 
         <Route path="/map">
           <CityMapPage />
