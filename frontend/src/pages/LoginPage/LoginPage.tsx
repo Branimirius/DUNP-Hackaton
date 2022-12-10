@@ -1,8 +1,14 @@
 import classes from './Form.module.css';
-import { useRef } from 'react';
+import { useContext, useRef } from 'react';
 import { loginUser } from '../../services/apis';
+import AuthContext from '../../store/auth-context';
+import { useHistory } from 'react-router-dom';
 
 export const LoginPage = () => {
+    const { login } = useContext(AuthContext);
+
+    const history = useHistory();
+
     const userName = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
 
@@ -14,7 +20,9 @@ export const LoginPage = () => {
             password: passwordRef.current!.value,
         });
 
-        console.log(response.data);
+        login(response.data);
+
+        history.push('*')
     };
     return (
         <div className={classes.context}>
