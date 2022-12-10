@@ -9,6 +9,8 @@ export const LocationDetail: React.FC<{ long: number, lat: number }> = ({ long, 
     const descriptionRef = useRef<HTMLInputElement>(null);
 
 
+
+
     const createLocationHandler = async (event: React.FormEvent) => {
         event.preventDefault();
 
