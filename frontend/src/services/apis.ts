@@ -43,6 +43,22 @@ export const uploadImage = (locationId: number, imageData: any) => {
   );
 };
 
+export const checkImageCategory = (imageData: any) => {
+  return axios.post(`http://localhost:5000/image`, imageData);
+};
+
 export const getAllLocations = async () => {
   return axios.get(`${urls.getLocations}`);
+};
+
+export const createComment = (comment: any) => {
+  return axios.post(urls.addComment, comment);
+};
+
+export const getLocationComments = async (locationId: number) => {
+  return axios.get(`${urls.getLocationComments}/${locationId}/comments`);
+};
+
+export const getLocationImage = async (locationId: number) => {
+  return axios.get(`${urls.getLocationImage}/${locationId}`);
 };
