@@ -9,4 +9,5 @@ export const urls = {
   addComment: `${path}/geo-entity-comment`,
   getLocationComments: `${path}/geo-entity`,
   getLocationImage: `${path}/local/geo-image`,
+  filterLocations: `${path}/geo-entity/filter`,
 };

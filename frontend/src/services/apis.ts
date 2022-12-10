@@ -62,3 +62,7 @@ export const getLocationComments = async (locationId: number) => {
 export const getLocationImage = async (locationId: number) => {
   return axios.get(`${urls.getLocationImage}/${locationId}`);
 };
+
+export const filterLocations = (filters: any) => {
+  return axios.post(urls.filterLocations, filters);
+};
