@@ -3,6 +3,7 @@ package com.hackathon.server.controller.geoEntity;
 import com.hackathon.server.model.dto.geoEntity.GeoEntityDTO;
 import com.hackathon.server.model.dto.geoEntityComment.GeoEntityCommentDTO;
 import com.hackathon.server.model.dto.geoEntityLike.GeoEntityLikeDTO;
+import com.hackathon.server.model.geoEntity.enums.GeoEntityCategory;
 import com.hackathon.server.service.geoEntity.GeoEntityService;
 import com.hackathon.server.service.geoEntityComment.GeoEntityCommentService;
 import com.hackathon.server.service.geoEntityLike.GeoEntityLikeService;
@@ -33,9 +34,14 @@ public class GeoEntityController {
         return new ResponseEntity<>(geoEntityService.createGeoEntity(geoEntityDTO), HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping("/filter")
     public ResponseEntity<List<GeoEntityDTO>> getAllGeoEntitiesList() {
         return new ResponseEntity<>(geoEntityService.getAllGeoEntities(), HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<GeoEntityDTO>> getAllGeoEntitiesList(@RequestBody List<GeoEntityCategory> categories) {
+        return new ResponseEntity<>(geoEntityService.getAllGeoEntitiesWithFilters(categories), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")

@@ -6,7 +6,6 @@ import com.hackathon.server.model.EntityStatus;
 import com.hackathon.server.model.dto.geoEntityCommentLike.GeoEntityCommentLikeDTO;
 import com.hackathon.server.model.geoEntityComment.GeoEntityComment;
 import com.hackathon.server.model.geoEntityCommentLike.GeoEntityCommentLike;
-import com.hackathon.server.model.geoEntityLike.GeoEntityLike;
 import com.hackathon.server.model.user.User;
 import com.hackathon.server.repository.geoEntityComment.GeoEntityCommentRepository;
 import com.hackathon.server.repository.geoEntityCommentLike.GeoEntityCommentLikeRepository;

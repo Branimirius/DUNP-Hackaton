@@ -5,13 +5,18 @@ import com.hackathon.server.config.error.ErrorMessageConstants;
 import com.hackathon.server.model.EntityStatus;
 import com.hackathon.server.model.dto.geoEntity.GeoEntityDTO;
 import com.hackathon.server.model.geoEntity.GeoEntity;
+import com.hackathon.server.model.geoEntity.enums.GeoEntityCategory;
+import com.hackathon.server.model.geoEntityComment.GeoEntityComment;
 import com.hackathon.server.model.user.User;
 import com.hackathon.server.repository.geoEntity.GeoEntityRepository;
+import com.hackathon.server.repository.predicate.GeoEntityCommentSpecification;
+import com.hackathon.server.repository.predicate.GeoEntitySpecification;
 import com.hackathon.server.repository.user.UserRepository;
 import com.hackathon.server.service.util.UtilService;
 import com.hackathon.server.util.LocalFileManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -136,6 +141,15 @@ public class GeoEntityServiceImpl implements GeoEntityService {
 
     }
 
+    @Override
+    public List<GeoEntityDTO> getAllGeoEntitiesWithFilters(List<GeoEntityCategory> categories) {
+        Specification<GeoEntity> geoEntitySpecification =
+                Specification.where(GeoEntitySpecification.byEntityStatus(EntityStatus.REGULAR)
+                        .and(GeoEntitySpecification.byCategories(categories)));
+        List<GeoEntity> geoEntities = geoEntityRepository.findAll(geoEntitySpecification);
+
+        return geoEntities.stream().map(this::convertToDTO).collect(Collectors.toList());
+    }
 
 
 }
