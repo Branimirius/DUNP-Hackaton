@@ -1,10 +1,11 @@
 import { ChangeEvent, useRef, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { createLocation, uploadImage } from "../../services/apis";
 
 export const LocationDetail: React.FC<{ long: number, lat: number }> = ({ long, lat }) => {
 
+    const history = useHistory();
     const [file, setFile] = useState<File>();
-
     const descriptionRef = useRef<HTMLInputElement>(null);
 
     const createLocationHandler = async (event: React.FormEvent) => {
@@ -14,6 +15,8 @@ export const LocationDetail: React.FC<{ long: number, lat: number }> = ({ long, 
         const imageResponse = await uploadImage(locationResponse.data.id, file);
 
         console.log(imageResponse.data);
+
+        history.push('/map');
     }
 
     const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {

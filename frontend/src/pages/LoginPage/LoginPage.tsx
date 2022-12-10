@@ -38,9 +38,6 @@ export const LoginPage = () => {
                         <input type="submit" value="Login" />
                     </div>
                 </form>
-                <div className={classes.to_login}>
-                    <p>Don't have account? <a className={classes.link} href="./register.html">Go to Register &rarr;</a></p>
-                </div>
             </div>
         </div>
     )

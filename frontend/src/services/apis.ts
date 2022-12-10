@@ -8,6 +8,17 @@ export const loginUser = (loginCredentials: {
   return axios.post(urls.login, loginCredentials);
 };
 
+export const registerUser = (newUser: {
+  username: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  repeatPassword: string;
+}) => {
+  return axios.post(urls.register, newUser);
+};
+
 export const createLocation = (newLocation: {
   userId: number;
   category: string;
@@ -30,4 +41,8 @@ export const uploadImage = (locationId: number, imageData: any) => {
     { image: imageData },
     config
   );
+};
+
+export const getAllLocations = async () => {
+  return axios.get(`${urls.getLocations}`);
 };
