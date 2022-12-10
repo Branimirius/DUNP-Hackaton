@@ -64,5 +64,5 @@ export const getLocationImage = async (locationId: number) => {
 };
 
 export const filterLocations = (filters: any) => {
-  return axios.get(urls.filterLocations, filters);
+  return axios.post(urls.filterLocations, filters);
 };
