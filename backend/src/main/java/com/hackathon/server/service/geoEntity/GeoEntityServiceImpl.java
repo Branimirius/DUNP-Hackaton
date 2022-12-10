@@ -22,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -142,10 +143,16 @@ public class GeoEntityServiceImpl implements GeoEntityService {
     }
 
     @Override
-    public List<GeoEntityDTO> getAllGeoEntitiesWithFilters(List<GeoEntityCategory> categories) {
+    public List<GeoEntityDTO> getAllGeoEntitiesWithFilters(List<String> categories) {
+        List<GeoEntityCategory> enumCategories = new ArrayList<>();
+        for(String category: categories) {
+            enumCategories.add(GeoEntityCategory.valueOf(category));
+        }
+
+
         Specification<GeoEntity> geoEntitySpecification =
                 Specification.where(GeoEntitySpecification.byEntityStatus(EntityStatus.REGULAR)
-                        .and(GeoEntitySpecification.byCategories(categories)));
+                        .and(GeoEntitySpecification.byCategories(enumCategories)));
         List<GeoEntity> geoEntities = geoEntityRepository.findAll(geoEntitySpecification);
 
         return geoEntities.stream().map(this::convertToDTO).collect(Collectors.toList());
