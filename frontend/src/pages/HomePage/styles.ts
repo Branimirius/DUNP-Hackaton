@@ -17,5 +17,6 @@ export const WelcomeMessage = styled.p`
 
 export const SearchBarContainer = styled.div`
   display: flex;
-  gap: 30px;
-`
+  gap: 15px;
+  margin: 10px;
+`;
