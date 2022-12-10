@@ -14,5 +14,7 @@ public class ErrorMessageConstants {
     public static final String FILE_TYPE_ERROR = "FILE_TYPE_ERROR";
     public static final String PASSWORDS_DOESNT_MATCH = "PASSWORD_DOESNT_MATCH";
     public static final String USERNAME_ALREADY_EXIST = "USERNAME_ALREADY_EXIST";
-
+    public static final String GEO_ENTITY_NOT_FOUND = "GEO_ENTITY_NOT_FOUND";
+    public static final String GEO_ENTITY_LIKE_ALREADY_EXIST = "GEO_ENTITY_LIKE_ALREADY_EXIST";
+    public static final String GEO_ENTITY_LIKE_NOT_FOUND = "GEO_ENTITY_LIKE_NOT_FOUND";
 }

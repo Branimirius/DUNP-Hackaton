@@ -2,14 +2,13 @@ package com.hackathon.server.model.geoEntity;
 
 import com.hackathon.server.model.AbstractStatusEntity;
 import com.hackathon.server.model.geoEntity.enums.GeoEntityCategory;
+import com.hackathon.server.model.user.User;
 import com.hackathon.server.model.user.enums.UserType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Data
@@ -36,5 +35,9 @@ public class GeoEntity extends AbstractStatusEntity {
 
     @Column(name = "description")
     private String description;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
 }

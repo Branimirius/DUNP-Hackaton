@@ -67,6 +67,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/user/reset-password").permitAll()
                 .antMatchers("/user/send-reset-password-email").permitAll()
                 .antMatchers("/local/user-profile-image/**").permitAll()
+                    .antMatchers("/geo-entity/**").permitAll()
                     .antMatchers("/local/logo/**").permitAll()
                 .anyRequest()
                 .authenticated()

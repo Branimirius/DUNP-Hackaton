@@ -29,7 +29,7 @@ mail:
     encodefilename: true
 document:
   user-image.path: src/main/resources/documents/public/user-profile-image
-
+  geo-image.path: src/main/resources/documents/public/geo-image
 
 
 server:

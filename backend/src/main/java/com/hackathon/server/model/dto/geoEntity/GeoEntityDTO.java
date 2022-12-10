@@ -13,6 +13,8 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class GeoEntityDTO {
 
+    private Long id;
+
     private GeoEntityCategory category;
 
     private BigDecimal latitude;
