@@ -60,7 +60,7 @@ export const getLocationComments = async (locationId: number) => {
 };
 
 export const getLocationImage = async (locationId: number) => {
-  return axios.get(`${urls.getLocationImage}/${locationId}`);
+  return axios.get(`${urls.getLocationImage}/${locationId}`, {responseType: 'blob'});
 };
 
 export const filterLocations = (filters: any) => {
