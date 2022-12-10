@@ -8,6 +8,17 @@ export const loginUser = (loginCredentials: {
   return axios.post(urls.login, loginCredentials);
 };
 
+export const registerUser = (newUser: {
+  username: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  repeatPassword: string;
+}) => {
+  return axios.post(urls.register, newUser);
+};
+
 export const createLocation = (newLocation: {
   userId: number;
   category: string;
@@ -30,4 +41,24 @@ export const uploadImage = (locationId: number, imageData: any) => {
     { image: imageData },
     config
   );
+};
+
+export const checkImageCategory = (imageData: any) => {
+  return axios.post(`http://localhost:5000/image`, imageData);
+};
+
+export const getAllLocations = async () => {
+  return axios.get(`${urls.getLocations}`);
+};
+
+export const createComment = (comment: any) => {
+  return axios.post(urls.addComment, comment);
+};
+
+export const getLocationComments = async (locationId: number) => {
+  return axios.get(`${urls.getLocationComments}/${locationId}/comments`);
+};
+
+export const getLocationImage = async (locationId: number) => {
+  return axios.get(`${urls.getLocationImage}/${locationId}`);
 };

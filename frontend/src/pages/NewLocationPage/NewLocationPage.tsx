@@ -51,6 +51,7 @@ export const NewLocationPage = () => {
                 mapStyle="mapbox://styles/mapbox/streets-v9"
             >
                 <Marker
+                    color="red"
                     longitude={initialLng}
                     latitude={initialLat}
                     anchor="bottom"

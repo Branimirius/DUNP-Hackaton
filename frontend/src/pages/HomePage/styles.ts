@@ -14,3 +14,8 @@ export const WelcomeMessage = styled.p`
   color: #4f2f2f;
   font-size: 100px;
 `;
+
+export const SearchBarContainer = styled.div`
+  display: flex;
+  gap: 30px;
+`

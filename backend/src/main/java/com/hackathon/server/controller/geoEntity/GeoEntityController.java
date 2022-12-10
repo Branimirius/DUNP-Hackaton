@@ -21,7 +21,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/geo-entity")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:3200")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class GeoEntityController {
 
