@@ -149,13 +149,18 @@ public class GeoEntityServiceImpl implements GeoEntityService {
             enumCategories.add(GeoEntityCategory.valueOf(category));
         }
 
+        List<GeoEntity> geoEntities = geoEntityRepository.findByEntityStatus(EntityStatus.REGULAR);
 
-        Specification<GeoEntity> geoEntitySpecification =
-                Specification.where(GeoEntitySpecification.byEntityStatus(EntityStatus.REGULAR)
-                        .and(GeoEntitySpecification.byCategories(enumCategories)));
-        List<GeoEntity> geoEntities = geoEntityRepository.findAll(geoEntitySpecification);
+        List<GeoEntity> entities =  new ArrayList<>();
+        for (GeoEntity entity: geoEntities) {
+            for(GeoEntityCategory cat: enumCategories) {
+                if(entity.getCategory().equals(cat)) {
+                    entities.add(entity);
+                }
+            }
+        }
 
-        return geoEntities.stream().map(this::convertToDTO).collect(Collectors.toList());
+        return entities.stream().map(this::convertToDTO).collect(Collectors.toList());
     }
 
 
