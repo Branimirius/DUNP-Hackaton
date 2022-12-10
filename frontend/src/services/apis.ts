@@ -20,7 +20,7 @@ export const registerUser = (newUser: {
 };
 
 export const createLocation = (newLocation: {
-  userId: number;
+  userId: string;
   category: string;
   latitude: number;
   longitude: number;
@@ -65,4 +65,8 @@ export const getLocationImage = async (locationId: number) => {
 
 export const filterLocations = (filters: any) => {
   return axios.post(urls.filterLocations, filters);
+};
+
+export const deleteLocation = (locationId: any) => {
+  return axios.delete(`${urls.deleteLocation}/${locationId}`);
 };

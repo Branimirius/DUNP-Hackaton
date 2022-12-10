@@ -10,4 +10,5 @@ export const urls = {
   getLocationComments: `${path}/geo-entity`,
   getLocationImage: `${path}/local/geo-image`,
   filterLocations: `${path}/geo-entity/filter`,
+  deleteLocation: `${path}/geo-entity`,
 };

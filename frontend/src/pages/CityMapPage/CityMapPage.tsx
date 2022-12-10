@@ -6,7 +6,7 @@ import Map, {
     GeolocateControl,
 } from "react-map-gl";
 import { useEffect, useState } from "react";
-import { filterLocations, getAllLocations } from "../../services/apis";
+import { deleteLocation, filterLocations, getAllLocations } from "../../services/apis";
 import { Content } from "./styles";
 import { SelectedLocation } from "../../components/SelectedLocation/SelectedLocation";
 import { SearchBarContainer } from "../HomePage/styles";
@@ -57,15 +57,24 @@ const CityMapPage = () => {
         }
     };
 
-    useEffect(() => {
-        const fetchLocations = async () => {
-            const response = await getAllLocations();
-            console.log(response.data);
-            setLocations(response.data)
-        };
+    const fetchLocations = async () => {
+        const response = await getAllLocations();
+        console.log(response.data);
+        setLocations(response.data)
+    };
 
+    useEffect(() => {
         fetchLocations();
     }, [])
+
+    const deleteLocationHandler = async () => {
+        const response = await deleteLocation(location.id);
+
+        console.log(response.data)
+
+        fetchLocations();
+        setLocation(null);
+    }
 
     return (
         <>
@@ -208,7 +217,7 @@ const CityMapPage = () => {
                     <GeolocateControl />
                 </Map>
 
-                {location && <SelectedLocation location={location} />}
+                {location && <SelectedLocation location={location} onDeleteHandler={deleteLocationHandler} />}
             </Content>
         </>
     );
