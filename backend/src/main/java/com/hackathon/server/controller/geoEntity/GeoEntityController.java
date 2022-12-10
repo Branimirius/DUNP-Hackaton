@@ -34,12 +34,12 @@ public class GeoEntityController {
         return new ResponseEntity<>(geoEntityService.createGeoEntity(geoEntityDTO), HttpStatus.OK);
     }
 
-    @GetMapping("/filter")
+    @GetMapping()
     public ResponseEntity<List<GeoEntityDTO>> getAllGeoEntitiesList() {
         return new ResponseEntity<>(geoEntityService.getAllGeoEntities(), HttpStatus.OK);
     }
 
-    @GetMapping
+    @PostMapping("/filter")
     public ResponseEntity<List<GeoEntityDTO>> getAllGeoEntitiesList(@RequestBody List<GeoEntityCategory> categories) {
         return new ResponseEntity<>(geoEntityService.getAllGeoEntitiesWithFilters(categories), HttpStatus.OK);
     }
