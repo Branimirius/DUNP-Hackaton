@@ -144,17 +144,12 @@ public class GeoEntityServiceImpl implements GeoEntityService {
 
     @Override
     public List<GeoEntityDTO> getAllGeoEntitiesWithFilters(List<String> categories) {
-        List<GeoEntityCategory> enumCategories = new ArrayList<>();
-        for(String category: categories) {
-            enumCategories.add(GeoEntityCategory.valueOf(category));
-        }
-
         List<GeoEntity> geoEntities = geoEntityRepository.findByEntityStatus(EntityStatus.REGULAR);
 
         List<GeoEntity> entities =  new ArrayList<>();
         for (GeoEntity entity: geoEntities) {
-            for(GeoEntityCategory cat: enumCategories) {
-                if(entity.getCategory().equals(cat)) {
+            for(String cat: categories) {
+                if(entity.getCategory().equals(GeoEntityCategory.valueOf(cat))) {
                     entities.add(entity);
                 }
             }
