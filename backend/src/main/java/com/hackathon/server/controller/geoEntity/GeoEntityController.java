@@ -38,6 +38,11 @@ public class GeoEntityController {
         return new ResponseEntity<>(geoEntityService.getAllGeoEntities(), HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<GeoEntityDTO> getGeoEntityById(@PathVariable Long id) {
+        return new ResponseEntity<>(geoEntityService.getOneById(id), HttpStatus.OK);
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<GeoEntityDTO> updateGeoEntity(@PathVariable Long id,
                                               @RequestBody GeoEntityDTO geoEntityDTO) {

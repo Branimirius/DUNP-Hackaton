@@ -128,5 +128,14 @@ public class GeoEntityServiceImpl implements GeoEntityService {
         }
     }
 
+    @Override
+    public GeoEntityDTO getOneById(Long id) {
+        GeoEntity geoEntity = geoEntityRepository.findByIdAndEntityStatus(id, EntityStatus.REGULAR)
+                .orElseThrow(() -> new BadRequestException(ErrorMessageConstants.GEO_ENTITY_NOT_FOUND));
+        return convertToDTO(geoEntity);
+
+    }
+
+
 
 }

@@ -19,5 +19,10 @@ public class OverviewController {
         return new ResponseEntity<>(localFileManager.downloadFile(imageUrl, localFileManager.USER_PROFILE_IMAGE_FILES_PATH), HttpStatus.OK);
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/local/geo-image/{imageUrl}")
+    public ResponseEntity<byte[]> getGeoEntityImage(@PathVariable String imageUrl) {
+        return new ResponseEntity<>(localFileManager.downloadFile(imageUrl, localFileManager.GEO_IMAGE_FILES_PATH), HttpStatus.OK);
+    }
+
 
 }

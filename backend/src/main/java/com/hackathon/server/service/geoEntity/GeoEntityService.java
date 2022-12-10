@@ -23,4 +23,6 @@ public interface GeoEntityService {
 
     GeoEntityDTO uploadImage(Long id, MultipartFile profileImage);
 
+    GeoEntityDTO getOneById(Long id);
+
 }
