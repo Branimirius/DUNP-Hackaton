@@ -5,6 +5,7 @@ import CityMapPage from './pages/CityMapPage/CityMapPage';
 import { HomePage } from './pages/HomePage/HomePage';
 import { LoginPage } from './pages/LoginPage/LoginPage';
 import { NewLocationPage } from './pages/NewLocationPage/NewLocationPage';
+import { RegistrationPage } from './pages/RegistrationPage/RegistrationPage';
 
 export default function App() {
   return (
@@ -31,6 +32,10 @@ export default function App() {
 
         <Route path="/login">
           <LoginPage />
+        </Route>
+
+        <Route path="/register">
+          <RegistrationPage />
         </Route>
 
         <Route path="*">

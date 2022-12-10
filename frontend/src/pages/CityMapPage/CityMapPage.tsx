@@ -5,7 +5,9 @@ import Map, {
     FullscreenControl,
     GeolocateControl,
 } from "react-map-gl";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getAllLocations } from "../../services/apis";
+import { useHistory } from "react-router-dom";
 
 
 const TOKEN = 'pk.eyJ1Ijoiam92YW5qZW5qaWMiLCJhIjoiY2wzdWJvNG4wMGZ2YjNkcGZ2dm5kZm5nYyJ9.9bCbz74PqDnzQDpBqRenHw'
@@ -13,6 +15,20 @@ const TOKEN = 'pk.eyJ1Ijoiam92YW5qZW5qaWMiLCJhIjoiY2wzdWJvNG4wMGZ2YjNkcGZ2dm5kZm
 const CityMapPage = () => {
     const [lng, setLng] = useState(20.5181);
     const [lat, setLat] = useState(43.1407);
+
+    const [locations, setLocations] = useState<any>([]);
+
+    useEffect(() => {
+        const fetchLocations = async () => {
+            const response = await getAllLocations();
+
+            console.log(response.data);
+
+            setLocations(response.data)
+        };
+
+        fetchLocations();
+    }, [])
 
     return (
         <>
@@ -33,7 +49,8 @@ const CityMapPage = () => {
                 }}
                 mapStyle="mapbox://styles/mapbox/streets-v9"
             >
-                <Marker longitude={lng} latitude={lat} />
+                {locations && locations.map((location: { id: number | undefined, latitude: number | undefined; longitude: number | undefined; }) => <Marker key={location.id} longitude={location.latitude} latitude={location.longitude} />)}
+
 
                 <NavigationControl position="bottom-right" />
                 <FullscreenControl />
