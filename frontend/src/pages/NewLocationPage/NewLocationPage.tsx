@@ -41,7 +41,6 @@ export const NewLocationPage = () => {
                     width: "70%",
                     height: "600px",
                     borderRadius: "15px",
-                    border: "2px solid red",
                 }}
                 initialViewState={{
                     longitude: initialLng,
@@ -51,6 +50,7 @@ export const NewLocationPage = () => {
                 mapStyle="mapbox://styles/mapbox/streets-v9"
             >
                 <Marker
+                    color="red"
                     longitude={initialLng}
                     latitude={initialLat}
                     anchor="bottom"

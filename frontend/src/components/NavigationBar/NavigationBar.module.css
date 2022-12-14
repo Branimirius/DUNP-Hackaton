@@ -39,7 +39,7 @@ a {
 }
 
 .loginButton {
-  color: #df9186;
+  color: #004586;
 }
 
 .registerButton {
@@ -47,7 +47,7 @@ a {
   color: white;
   height: 40px;
   width: 140px;
-  background: linear-gradient(270deg, #ecbcb3 0%, #eaa79e 100%);
+  background: linear-gradient(270deg, #77caf4 0%, #4423ff 100%);
   box-shadow: 0px 15px 20px rgba(234, 168, 159, 0.2);
   border-radius: 50px;
   text-align: center;
@@ -63,7 +63,7 @@ a {
 }
 
 .appName {
-  color: #df9186;
+  color: #0f5ba2;
   font-weight: 700;
   font-size: x-large;
   display: flex;
@@ -74,7 +74,7 @@ a {
 
 .active {
   padding-bottom: 0.25rem;
-  border-bottom: 2px solid #df9186;
+  border-bottom: 2px solid #0f5ba2;
 }
 
 .appName:first-of-type {

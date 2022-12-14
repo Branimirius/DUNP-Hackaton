@@ -1,6 +1,6 @@
 import { ChangeEvent, useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { createLocation, uploadImage } from "../../services/apis";
+import { checkImageCategory, createLocation, uploadImage } from "../../services/apis";
 
 export const LocationDetail: React.FC<{ long: number, lat: number }> = ({ long, lat }) => {
 
@@ -8,9 +8,15 @@ export const LocationDetail: React.FC<{ long: number, lat: number }> = ({ long, 
     const [file, setFile] = useState<File>();
     const descriptionRef = useRef<HTMLInputElement>(null);
 
+
+
+
     const createLocationHandler = async (event: React.FormEvent) => {
         event.preventDefault();
-        const locationResponse = await createLocation({ userId: 1, category: 'FOOD', latitude: lat, longitude: long, description: descriptionRef.current!.value })
+
+        let id = localStorage.getItem('id') || '';
+
+        const locationResponse = await createLocation({ userId: id, category: 'FOOD', latitude: lat, longitude: long, description: descriptionRef.current!.value })
 
         const imageResponse = await uploadImage(locationResponse.data.id, file);
 
@@ -19,11 +25,14 @@ export const LocationDetail: React.FC<{ long: number, lat: number }> = ({ long, 
         history.push('/map');
     }
 
-    const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const handleFileChange = async (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
             setFile(e.target.files[0]);
 
             //get category
+            const categoryResponse = await checkImageCategory(file);
+
+            console.log(categoryResponse.data);
         }
     };
 
@@ -33,20 +42,60 @@ export const LocationDetail: React.FC<{ long: number, lat: number }> = ({ long, 
                 <p>Longitude: {long}</p>
                 <p>Latitude: {lat}</p>
             </div>
-            <div>
+            <div style={{backgroundColor: "#f2f2f2", padding: "8px 10px", borderRadius: "10px"}} >
                 <p>Upload image: </p>
                 <input type="file" onChange={handleFileChange} />
             </div>
             <div>
-                <p>Cattegory: FETCH FROM BACKEND</p>
+                <p>Category: FETCH FROM BACKEND</p>
             </div>
             <div>
-                <input type="text" ref={descriptionRef} />
+                <input style={{width: "100%", height: "50px"}} type="text" ref={descriptionRef} />
             </div>
             <div>
-                <button type="submit">SAVE</button>
+                <button style={{
+                    background: "#0f5ba2",
+                    border: "none",
+                    color: "white",
+                    padding: "15px 32px",
+                    textAlign: "center",
+                    textDecoration: "none",
+                    display: "inline-block",
+                    fontSize: "16px",
+                    margin: "4px 2px",
+                    cursor: "pointer",
+                    borderRadius: "100px",
+                    marginTop: "15px"
+                }} type="submit">SAVE</button>
             </div>
         </form>
     )
 };
+
+/*
+
+import React, { useState } from 'react';
+
+const ImageComponent = () => {
+  const [imageSrc, setImageSrc] = useState(null);
+
+  // Read the image file and convert it to a byte array
+  const readImage = (file) => {
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      setImageSrc(reader.result);
+    }
+
+    reader.readAsArrayBuffer(file);
+  }
+
+  return (
+    <>
+      <input type="file" onChange={(e) => readImage(e.target.files[0])} />
+
+      {imageSrc && <img src={imageSrc} />}
+    </>
+  );
+}*/
 

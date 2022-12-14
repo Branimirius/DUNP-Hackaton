@@ -6,4 +6,9 @@ export const urls = {
   createLocation: `${path}/geo-entity`,
   uploadImage: `${path}/geo-entity`,
   getLocations: `${path}/geo-entity`,
+  addComment: `${path}/geo-entity-comment`,
+  getLocationComments: `${path}/geo-entity`,
+  getLocationImage: `${path}/local/geo-image`,
+  filterLocations: `${path}/geo-entity/filter`,
+  deleteLocation: `${path}/geo-entity`,
 };
